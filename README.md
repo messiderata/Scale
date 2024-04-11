@@ -28,7 +28,8 @@ Set up the gas sensor pin mode.
 Configure and calibrate the HX711 load cell amplifier.
 
 Connect to the WiFi network.
-![Alt text]()
+![Alt text](https://github.com/messiderata/Scale/blob/main/WifiCrendentials.png)
+
 
 Sign up for Firebase authentication and configure Firebase connection.
 
