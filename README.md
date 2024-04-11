@@ -61,3 +61,4 @@ Configure Firebase API key and database URL.
 Sign up for Firebase authentication.
 Send sensor data (weight and gas status) to Firebase Realtime Database.
 This step-by-step breakdown provides a comprehensive guide for understanding and setting up the code to monitor gas levels and weight data using an ESP32 microcontroller, load cells, gas sensor, and Firebase integration.
+![Alt text](https://github.com/messiderata/Scale/blob/main/Firebase.png)
