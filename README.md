@@ -26,6 +26,7 @@ Initialize the LCD display and backlight.
 Set up the gas sensor pin mode.
 
 Configure and calibrate the HX711 load cell amplifier.
+![Alt text](https://github.com/messiderata/Scale/blob/main/Calibration.png)
 
 Connect to the WiFi network.
 ![Alt text](https://github.com/messiderata/Scale/blob/main/WifiCrendentials.png)
