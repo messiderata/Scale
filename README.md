@@ -18,11 +18,17 @@ Declare global variables for Firebase authentication, LCD display, sensor pins, 
 
 ## 3. Setup Function:
 In the setup() function:
+
 Begin serial communication for debugging purposes.
+
 Initialize the LCD display and backlight.
+
 Set up the gas sensor pin mode.
+
 Configure and calibrate the HX711 load cell amplifier.
+
 Connect to the WiFi network.
+![Alt text]()
 
 Sign up for Firebase authentication and configure Firebase connection.
 
