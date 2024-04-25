@@ -36,7 +36,7 @@ bool signupOK = false;
 LiquidCrystal_I2C lcd(LCD_ADDR, LCD_COLS, LCD_ROWS);
 
 // Pins for MQ2
-const int gasSensorPin = 12;
+const int gasSensorPin = 16;
 
 // Pins for HX711
 const int HX711_dout = 15;
@@ -50,17 +50,21 @@ void setup() {
   Serial.begin(57600);
   delay(10);
   Serial.println();
+  
   Serial.println("Starting...");
 
   // Initialize the LCD
   lcd.init();
   lcd.backlight();
+  lcd.setCursor(0, 0);
+  lcd.print("Starting...");
+  delay(1500);
 
   // Set up the gas sensor pin
   pinMode(gasSensorPin, INPUT);
 
-  // HX711 setup
-  float calibrationValue = 9.58;  // Change this value if needed9.57
+  // HX711 setups
+  float calibrationValue = -12530.91;  // Change this value if needed
   LoadCell.begin();
   unsigned long stabilizingtime = 5000;
   boolean _tare = true;
@@ -120,6 +124,7 @@ void setup() {
 
   Firebase.begin(&config, &auth);
   Firebase.reconnectWiFi(true);
+
 }
 
 void loop() {
@@ -139,7 +144,7 @@ void loop() {
   // Get smoothed value from the dataset and print it
   if (newDataReady) {
     if (millis() > t + serialPrintInterval) {
-      float weight = LoadCell.getData() / 1000.0;
+      float weight = LoadCell.getData();
       char weightStr[8];
       dtostrf(weight, 6, 2, weightStr);
       Serial.print("Load cell output value: ");
@@ -150,15 +155,31 @@ void loop() {
       lcd.print(weight);
       lcd.print("kg");
 
-      // Send weight to Firebase
-      if (Firebase.RTDB.set(&fbdo, "tanksInfo/danicab@gmail,com/Weight", weightStr)) {
+      float zero = 0.00;
+      if (weight < 0 ){
+        lcd.setCursor(0, 0);
+        lcd.print("Weight: ");
+        lcd.print(zero);
+        lcd.print("kg  ");
+        if (Firebase.RTDB.set(&fbdo, "tanksInfo/danicab@gmail,com/Weight", zero)) {
+          Serial.println("Weight sent to Firebase");
+        }
+        if (Firebase.RTDB.set(&fbdo, "tanksInfo/mark@gmail,com/Weight", zero)) {
+          Serial.println("Weight sent to Firebase");
+        }
+      }
+      else{
+        lcd.setCursor(0, 0);
+        lcd.print("Weight: ");
+        lcd.print(weight);
+        lcd.print("kg  ");
+        if (Firebase.RTDB.set(&fbdo, "tanksInfo/danicab@gmail,com/Weight", weightStr)) {
         Serial.println("Weight sent to Firebase");
       }
-
-      if (Firebase.RTDB.set(&fbdo, "tanksInfo/mark@gmail,com/Weight", weightStr)) {
-        Serial.println("Weight sent to Firebase");
+        if (Firebase.RTDB.set(&fbdo, "tanksInfo/mark@gmail,com/Weight", weightStr)) {
+          Serial.println("Weight sent to Firebase");
+        }     
       }
-
       // Check gas leak status and print on LCD
       if (sensorValue == HIGH) {
         lcd.setCursor(0, 1);
