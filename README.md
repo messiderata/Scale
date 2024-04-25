@@ -2,7 +2,7 @@
 ## DESCRIPTION
 With an ESP32 microcontroller and expansion board, coupled with an HX711 load cell amplifier, MQ2 gas sensor, four load cells, and an I2C LCD, this project aims to create a comprehensive gas tank monitoring system. Utilizing the ESP32's capabilities, the system continuously reads data from the load cells to accurately measure the tank's weight distribution. Concurrently, the MQ2 sensor detects gas levels and potential leaks, ensuring safety and security. The I2C LCD provides real-time visual feedback on weight and gas status for local monitoring, while Firebase integration enables remote access to data for logging and analysis. This setup offers a versatile solution suitable for various applications, from industrial to household gas monitoring needs.
 # WIRE DIAGRAM
-![Alt text](https://github.com/messiderata/Scale/blob/main/Wire%20Diagram.png)
+![Alt text](https://github.com/messiderata/Scale/blob/main/Src/Wire%20Diagram.png)
 
 ## LOAD CELL WIRING
 ![Alt text](https://github.com/firebitlab/arduino/blob/master/HX711/hx711.jpg)
@@ -26,10 +26,10 @@ Initialize the LCD display and backlight.
 Set up the gas sensor pin mode.
 
 Configure and calibrate the HX711 load cell amplifier.
-![Alt text](https://github.com/messiderata/Scale/blob/main/Calibration.png)
+![Alt text](https://github.com/messiderata/Scale/blob/main/Src/Calibration.png)
 
 Connect to the WiFi network.
-![Alt text](https://github.com/messiderata/Scale/blob/main/WifiCrendentials.png)
+![Alt text](https://github.com/messiderata/Scale/blob/main/Src/WifiCrendentials.png)
 
 
 Sign up for Firebase authentication and configure Firebase connection.
